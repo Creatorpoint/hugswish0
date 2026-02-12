@@ -2,205 +2,210 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hug Day ❤️</title>
+<title>Happy Hug Day Sargam Jii 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* Video Background */
+video{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+/* Overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
+
 body{
-  margin:0;
-  background:radial-gradient(circle,#ff758c,#ff7eb3);
-  color:white;
   font-family:'Poppins',sans-serif;
+  color:#fff;
   text-align:center;
-  overflow:hidden;
+  overflow-x:hidden;
+}
+
+/* Banner */
+.banner{
+  padding:40px 20px;
+  animation: glow 2s infinite alternate;
+}
+.banner h1{
+  font-family:'Pacifico',cursive;
+  font-size:3em;
+}
+.banner h2{
+  font-family:'Dancing Script',cursive;
+  font-size:2em;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 30px #ffb3c6}
 }
 
 /* Unlock */
-#unlock{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  z-index:10;
+.unlock{
+  margin:20px auto;
+  padding:15px 35px;
+  background:#fff;
+  color:#ff4d6d;
+  border-radius:50px;
+  font-weight:bold;
+  width:fit-content;
   cursor:pointer;
+  animation:pulse 1.5s infinite;
 }
-
-/* Name */
-h1{
-  font-family:'Great Vibes',cursive;
-  font-size:55px;
-  margin-top:30px;
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{
-  from{text-shadow:0 0 10px pink;}
-  to{text-shadow:0 0 30px white;}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
 }
 
 /* Handwriting */
-#love{
-  font-family:'Great Vibes',cursive;
-  font-size:48px;
+.handwrite{
+  font-family:'Dancing Script',cursive;
+  font-size:2.6em;
   white-space:nowrap;
   overflow:hidden;
-  border-right:3px solid white;
+  border-right:3px solid #fff;
   width:0;
-  margin:20px auto;
-  animation:write 6s steps(30) forwards, blink 0.7s infinite;
+  margin:30px auto;
+  animation:typing 5s steps(40,end) forwards, blink .8s infinite;
 }
-@keyframes write{to{width:100%;}}
-@keyframes blink{50%{border-color:transparent;}}
+@keyframes typing{to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+/* Photos */
+.photos{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin:30px;
+}
+.photos img{
+  width:200px;
+  border-radius:20px;
+  box-shadow:0 0 25px #ffccd5;
+  opacity:0;
+  transform:scale(0.5);
+  animation:reveal 2s forwards;
+}
+.photos img:nth-child(1){animation-delay:1s}
+.photos img:nth-child(2){animation-delay:2s}
+.photos img:nth-child(3){animation-delay:3s}
+@keyframes reveal{
+  to{opacity:1;transform:scale(1)}
+}
 
 /* Shayari */
 .shayari{
-  max-width:90%;
-  margin:auto;
-  font-size:20px;
-  animation:fadeIn 3s;
+  font-family:'Dancing Script',cursive;
+  font-size:1.7em;
+  margin:30px;
+  animation:float 3s infinite alternate;
 }
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;}
-}
-
-/* Photos */
-.photo-box img{
-  width:230px;
-  height:230px;
-  border-radius:20px;
-  margin-top:20px;
-  animation:pulse 3s infinite;
-}
-@keyframes pulse{
-  50%{transform:scale(1.08);}
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-10px)}
 }
 
-/* Buttons */
-.buttons{
-  margin-top:25px;
-}
-button{
-  padding:12px 25px;
-  font-size:18px;
+/* Proposal */
+.proposal button{
+  margin:10px;
+  padding:15px 35px;
   border:none;
   border-radius:30px;
-  margin:10px;
+  font-size:1.2em;
   cursor:pointer;
 }
-.yes{background:#ff3366;color:white;}
-.forever{background:white;color:#ff3366;}
+.yes{background:#fff;color:#ff4d6d}
+.forever{background:#ffccd5;color:#c9184a}
 
 /* Popup */
-#popup{
+.popup{
+  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.8);
-  display:none;
-  align-items:center;
+  background:rgba(0,0,0,.8);
   justify-content:center;
-  z-index:20;
+  align-items:center;
 }
-#popup div{
-  background:white;
-  color:#ff3366;
-  padding:25px;
+.popup div{
+  background:#fff;
+  color:#ff4d6d;
+  padding:30px;
   border-radius:20px;
-  max-width:90%;
-  font-size:20px;
+  animation:zoom 1s;
 }
-
-/* Fireworks */
-.fire{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  animation:explode 1.5s linear infinite;
-}
-@keyframes explode{
-  from{transform:translateY(0);opacity:1;}
-  to{transform:translateY(-300px);opacity:0;}
+@keyframes zoom{
+  from{transform:scale(0)}
+  to{transform:scale(1)}
 }
 </style>
 </head>
 
 <body>
 
-<div id="unlock">📱 Tap to Unlock Love 💖</div>
+<!-- 🎥 CHANGE VIDEO URL HERE -->
+<video autoplay muted loop playsinline>
+  <source src="https://files.catbox.moe/0shlsv.mp4" type="video/mp4">
+</video>
 
+<div class="overlay"></div>
+
+<!-- 🎶 Music -->
 <audio id="music" src="https://files.catbox.moe/z544v2.mp3" loop></audio>
 
-<h1>💖 SARGAM JII 💖</h1>
+<div class="banner">
+  <h1>Happy Hug Day 🤗</h1>
+  <h2>SARGAM JII 💖</h2>
+</div>
 
-<div id="love">I Love You ❤️</div>
+<div class="unlock" onclick="unlockLove()">📱 Tap to Unlock Love</div>
+
+<div class="handwrite">I Love You Sargam Jii 💕</div>
+
+<div class="photos">
+  <img src="https://files.catbox.moe/vkl6oa.jpg">
+  <img src="https://files.catbox.moe/14yoxb.jpg">
+  <img src="https://files.catbox.moe/7rokfd.jpg">
+</div>
 
 <div class="shayari">
-  Tumhari baaton se jo sukoon milta hai 🤍<br>
-  Wo kisi aur jahaan mein nahi 💫<br><br>
-  <b>SARGAM JII</b>, tu meri zindagi ka wo hissa hai<br>
-  Jiske bina sab adhoora lagta hai 💞
+  “Jab tu gale lagti hai na,<br>
+   Toh lagta hai poori duniya meri ho gayi 💞”
 </div>
 
-<div class="photo-box">
-  <img id="photo" src="https://files.catbox.moe/vkl6oa.jpg">
+<div class="proposal">
+  <button class="yes" onclick="showPopup()">YES 💖</button>
+  <button class="forever" onclick="showPopup()">FOREVER ♾️</button>
 </div>
 
-<div class="buttons">
-  <button class="yes" onclick="openPopup()">Yes 💖</button>
-  <button class="forever" onclick="openPopup()">Forever ♾️</button>
-</div>
-
-<!-- Secret Popup -->
-<div id="popup" onclick="closePopup()">
+<div class="popup" id="popup">
   <div>
-    🎁 <b>Secret Message</b> 💌<br><br>
-    SARGAM JII 🥹💖<br>
-    Main har janam tumhe hi chahunga.<br>
-    Will you always be mine? 🫂❤️
+    🎁 Tum meri zindagi ho Sargam Jii 💝<br><br>
+    🤗 Hug Forever!
   </div>
 </div>
 
 <script>
-/* Unlock */
-unlock.onclick=()=>{
-  unlock.style.display="none";
-  music.play();
-};
-
-/* Photos */
-let photos=[
- "https://files.catbox.moe/vkl6oa.jpg",
- "https://files.catbox.moe/14yoxb.jpg"
-];
-let i=0;
-setInterval(()=>{
- i=(i+1)%photos.length;
- photo.src=photos[i];
-},3000);
-
-/* Popup */
-function openPopup(){
- document.getElementById("popup").style.display="flex";
+function unlockLove(){
+  document.getElementById("music").play();
 }
-function closePopup(){
- document.getElementById("popup").style.display="none";
+function showPopup(){
+  document.getElementById("popup").style.display="flex";
 }
-
-/* Fireworks */
-setInterval(()=>{
- let f=document.createElement("div");
- f.className="fire";
- f.style.left=Math.random()*100+"vw";
- f.style.bottom="0";
- document.body.appendChild(f);
- setTimeout(()=>f.remove(),1500);
-},200);
 </script>
 
 </body>
