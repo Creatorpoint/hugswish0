@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Hug Day 💞 SARGAM JII</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  height:100vh;
+  background:radial-gradient(circle at top,#ff9acb,#ff4f9a,#9b004c);
+  font-family:'Segoe UI',sans-serif;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+
+.lock{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ff5fa2,#b3005e);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+  text-align:center;
+}
+.lock h1{
+  font-size:2.2rem;
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+  to{transform:scale(1.1)}
+}
+
+.card{
+  display:none;
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(14px);
+  padding:30px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 0 50px rgba(255,0,120,.7);
+  max-width:360px;
+}
+
+.name{
+  font-size:2.4rem;
+  color:#ffe600;
+  text-shadow:0 0 20px #fff;
+}
+
+.write{
+  margin-top:15px;
+  font-size:2.4rem;
+  font-family:cursive;
+  white-space:nowrap;
+  overflow:hidden;
+  border-right:3px solid white;
+  width:0;
+  animation:typing 4s steps(20) forwards, blink .8s infinite;
+}
+@keyframes typing{to{width:100%}}
+@keyframes blink{50%{border-color:transparent}}
+
+.photo{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:15px auto;
+  display:none;
+  border:4px solid #fff;
+  box-shadow:0 0 30px #ffdeec;
+  animation:zoomIn 1.5s ease;
+}
+@keyframes zoomIn{
+  from{transform:scale(.3);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+/* floating hearts */
+.float{
+  position:absolute;
+  bottom:-60px;
+  font-size:26px;
+  animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+/* fireworks text */
+.fire{
+  position:fixed;
+  top:40%;
+  width:100%;
+  text-align:center;
+  font-size:3rem;
+  color:#ffe600;
+  text-shadow:0 0 30px #fff;
+  animation:boom 1.5s ease;
+}
+@keyframes boom{
+  0%{transform:scale(.2);opacity:0}
+  60%{transform:scale(1.4);opacity:1}
+  100%{opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://files.catbox.moe/z544v2.mp3" type="audio/mpeg">
+</audio>
+
+<!-- LOCK -->
+<div class="lock" onclick="unlockLove()">
+  <h1>🔒 Tap to Unlock Love 💖</h1>
+</div>
+
+<!-- CARD -->
+<div class="card" id="card">
+  <h1>Happy Hug Day 🤗</h1>
+  <div class="name">💖 SARGAM JII 💖</div>
+
+  <!-- PHOTO -->
+  <img id="photo" class="photo"
+  src="https://files.catbox.moe/vkl6oa.jpg"
+  alt="My Love">
+
+  <div class="write">I Love You 💞</div>
+
+  <p style="margin-top:15px;font-size:1.1rem">
+    Tumhari smile meri duniya hai 🥹❤️
+  </p>
+</div>
+
+<script>
+const icons=["💖","🌹","❤️","💘","🫂"];
+
+function unlockLove(){
+  document.querySelector(".lock").style.display="none";
+  document.getElementById("card").style.display="block";
+  document.getElementById("music").play();
+
+  setTimeout(()=>document.getElementById("photo").style.display="block",1200);
+  setTimeout(nameBlast,1800);
+}
+
+function floatItem(){
+  const el=document.createElement("div");
+  el.className="float";
+  el.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),8000);
+}
+setInterval(floatItem,300);
+
+function nameBlast(){
+  const fire=document.createElement("div");
+  fire.className="fire";
+  fire.innerHTML="💥 SARGAM JII 💥";
+  document.body.appendChild(fire);
+  setTimeout(()=>fire.remove(),1500);
+}
+</script>
+
+</body>
+</html>
