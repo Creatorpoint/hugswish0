@@ -2,225 +2,206 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Hug Day Sargam Jii 💖</title>
+<title>Hug Day ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
 body{
-  background: radial-gradient(circle at top,#ff7eb3,#ff758c,#ff4d6d);
+  margin:0;
+  background:radial-gradient(circle,#ff758c,#ff7eb3);
+  color:white;
   font-family:'Poppins',sans-serif;
-  color:#fff;
   text-align:center;
   overflow:hidden;
 }
 
-/* Glowing Rain */
-.rain span{
+/* Unlock */
+#unlock{
   position:fixed;
-  top:-10%;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:24px;
-  animation: fall linear infinite;
-  opacity:.8;
-}
-@keyframes fall{
-  to{transform:translateY(120vh);opacity:0}
+  z-index:10;
+  cursor:pointer;
 }
 
-/* Banner */
-.banner{
-  padding:30px 15px;
-  animation: glow 2s infinite alternate;
-}
-.banner h1{
-  font-family:'Pacifico',cursive;
-  font-size:3em;
-  text-shadow:0 0 25px #fff;
-}
-.banner h2{
-  font-family:'Dancing Script',cursive;
-  font-size:2em;
+/* Name */
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:55px;
+  margin-top:30px;
+  animation:glow 2s infinite alternate;
 }
 @keyframes glow{
-  from{text-shadow:0 0 10px #fff}
-  to{text-shadow:0 0 30px #ffd1dc}
-}
-
-/* Unlock */
-.unlock{
-  margin:20px auto;
-  width:max-content;
-  padding:15px 35px;
-  background:#fff;
-  color:#ff4d6d;
-  border-radius:50px;
-  font-weight:bold;
-  cursor:pointer;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-  50%{transform:scale(1.1)}
+  from{text-shadow:0 0 10px pink;}
+  to{text-shadow:0 0 30px white;}
 }
 
 /* Handwriting */
-.handwrite{
-  font-family:'Dancing Script',cursive;
-  font-size:2.6em;
+#love{
+  font-family:'Great Vibes',cursive;
+  font-size:48px;
   white-space:nowrap;
   overflow:hidden;
-  border-right:3px solid #fff;
+  border-right:3px solid white;
   width:0;
   margin:20px auto;
-  animation:typing 4s steps(30,end) forwards, blink .8s infinite;
+  animation:write 6s steps(30) forwards, blink 0.7s infinite;
 }
-@keyframes typing{to{width:100%}}
-@keyframes blink{50%{border-color:transparent}}
-
-/* Photo Box */
-.photo-box{
-  width:260px;
-  height:260px;
-  margin:30px auto;
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 0 30px #fff;
-  animation:boxGlow 2s infinite alternate;
-}
-@keyframes boxGlow{
-  to{box-shadow:0 0 45px #ffd1dc}
-}
-.photo-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  animation: slide 9s infinite;
-}
-@keyframes slide{
-  0%{opacity:1}
-  30%{opacity:1}
-  33%{opacity:0}
-  100%{opacity:0}
-}
+@keyframes write{to{width:100%;}}
+@keyframes blink{50%{border-color:transparent;}}
 
 /* Shayari */
 .shayari{
-  font-family:'Dancing Script',cursive;
-  font-size:1.7em;
-  margin:25px;
-  animation:float 3s infinite alternate;
+  max-width:90%;
+  margin:auto;
+  font-size:20px;
+  animation:fadeIn 3s;
 }
-@keyframes float{
-  to{transform:translateY(-12px)}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;}
 }
 
-/* Proposal */
-.proposal button{
-  margin:10px;
-  padding:15px 35px;
+/* Photos */
+.photo-box img{
+  width:230px;
+  height:230px;
+  border-radius:20px;
+  margin-top:20px;
+  animation:pulse 3s infinite;
+}
+@keyframes pulse{
+  50%{transform:scale(1.08);}
+}
+
+/* Buttons */
+.buttons{
+  margin-top:25px;
+}
+button{
+  padding:12px 25px;
+  font-size:18px;
   border:none;
   border-radius:30px;
-  font-size:1.2em;
+  margin:10px;
   cursor:pointer;
 }
-.yes{background:#fff;color:#ff4d6d}
-.forever{background:#ffd1dc;color:#ff0066}
+.yes{background:#ff3366;color:white;}
+.forever{background:white;color:#ff3366;}
 
 /* Popup */
-.popup{
-  display:none;
+#popup{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
-  justify-content:center;
+  background:rgba(0,0,0,0.8);
+  display:none;
   align-items:center;
+  justify-content:center;
+  z-index:20;
 }
-.popup div{
-  background:#fff;
-  color:#ff4d6d;
-  padding:30px;
+#popup div{
+  background:white;
+  color:#ff3366;
+  padding:25px;
   border-radius:20px;
-  animation:zoom 1s;
+  max-width:90%;
+  font-size:20px;
 }
-@keyframes zoom{
-  from{transform:scale(0)}
-  to{transform:scale(1)}
+
+/* Fireworks */
+.fire{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:explode 1.5s linear infinite;
+}
+@keyframes explode{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-300px);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Rain -->
-<div class="rain" id="rain"></div>
+<div id="unlock">📱 Tap to Unlock Love 💖</div>
 
 <audio id="music" src="https://files.catbox.moe/z544v2.mp3" loop></audio>
 
-<div class="banner">
-  <h1>Happy Hug Day 🤗</h1>
-  <h2>💖 Sargam Jii 💖</h2>
-</div>
+<h1>💖 SARGAM JII 💖</h1>
 
-<div class="unlock" onclick="unlockLove()">📱 Tap to Unlock Love</div>
-
-<div class="handwrite">I Love You Sargam Jii 💕</div>
-
-<div class="photo-box">
-  <img id="slider" src="https://files.catbox.moe/vkl6oa.jpg">
-</div>
+<div id="love">I Love You ❤️</div>
 
 <div class="shayari">
-“Tera saath ho toh har din Hug Day hai,<br>
-Tu paas ho toh har dard bhi muskura jaye 💞”
+  Teri baahon mein jo sukoon milta hai 🤍<br>
+  Wo kisi aur jahaan mein nahi 💫<br><br>
+  <b>SARGAM JII</b>, tu meri zindagi ka wo hissa hai<br>
+  Jiske bina sab adhoora lagta hai 💞
 </div>
 
-<div class="proposal">
-  <button class="yes" onclick="showPopup()">YES 💖</button>
-  <button class="forever" onclick="showPopup()">FOREVER ♾️</button>
+<div class="photo-box">
+  <img id="photo" src="https://files.catbox.moe/vkl6oa.jpg">
 </div>
 
-<div class="popup" id="popup">
+<div class="buttons">
+  <button class="yes" onclick="openPopup()">Yes 💖</button>
+  <button class="forever" onclick="openPopup()">Forever ♾️</button>
+</div>
+
+<!-- Secret Popup -->
+<div id="popup" onclick="closePopup()">
   <div>
-    🎁 Tum meri duniya ho Sargam Jii 💝<br><br>
-    🤗 Tight Hug Forever!
+    🎁 <b>Secret Message</b> 💌<br><br>
+    SARGAM JII 🥹💖<br>
+    Main har janam tumhe hi chahunga.<br>
+    Will you always be mine? 🫂❤️
   </div>
 </div>
 
 <script>
-/* Music unlock fix */
-function unlockLove(){
-  const music=document.getElementById("music");
-  music.play().catch(()=>{});
-}
+/* Unlock */
+unlock.onclick=()=>{
+  unlock.style.display="none";
+  music.play();
+};
 
-/* Popup */
-function showPopup(){
-  document.getElementById("popup").style.display="flex";
-}
-
-/* Photo Slider */
-const photos=[
-"https://files.catbox.moe/vkl6oa.jpg",
-"https://files.catbox.moe/14yoxb.jpg",
-"https://files.catbox.moe/7rokfd.jpg"
+/* Photos */
+let photos=[
+ "https://files.catbox.moe/vkl6oa.jpg",
+ "https://files.catbox.moe/14yoxb.jpg",
+ "https://files.catbox.moe/7rokfd.jpg"
 ];
 let i=0;
 setInterval(()=>{
-  i=(i+1)%photos.length;
-  document.getElementById("slider").src=photos[i];
+ i=(i+1)%photos.length;
+ photo.src=photos[i];
 },3000);
 
-/* Rain effect */
-const rain=document.getElementById("rain");
-for(let i=0;i<30;i++){
-  let s=document.createElement("span");
-  s.innerHTML=Math.random()>0.5?"💖":"🌸";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=3+Math.random()*5+"s";
-  rain.appendChild(s);
+/* Popup */
+function openPopup(){
+ document.getElementById("popup").style.display="flex";
 }
+function closePopup(){
+ document.getElementById("popup").style.display="none";
+}
+
+/* Fireworks */
+setInterval(()=>{
+ let f=document.createElement("div");
+ f.className="fire";
+ f.style.left=Math.random()*100+"vw";
+ f.style.bottom="0";
+ document.body.appendChild(f);
+ setTimeout(()=>f.remove(),1500);
+},200);
 </script>
 
 </body>
