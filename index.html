@@ -5,30 +5,13 @@
 <title>Happy Hug Day Sargam Jii 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-/* Video Background */
-video{
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-}
-
-/* Overlay */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  z-index:-1;
-}
-
 body{
+  background: radial-gradient(circle at top,#ff7eb3,#ff758c,#ff4d6d);
   font-family:'Poppins',sans-serif;
   color:#fff;
   text-align:center;
@@ -43,27 +26,23 @@ body{
 .banner h1{
   font-family:'Pacifico',cursive;
   font-size:3em;
-}
-.banner h2{
-  font-family:'Dancing Script',cursive;
-  font-size:2em;
+  text-shadow:0 0 20px #fff;
 }
 @keyframes glow{
-  from{text-shadow:0 0 10px #fff}
-  to{text-shadow:0 0 30px #ffb3c6}
+  from{filter:drop-shadow(0 0 5px #fff)}
+  to{filter:drop-shadow(0 0 20px #ffdde1)}
 }
 
 /* Unlock */
 .unlock{
-  margin:20px auto;
-  padding:15px 35px;
+  margin:20px;
+  padding:15px 30px;
   background:#fff;
   color:#ff4d6d;
   border-radius:50px;
   font-weight:bold;
-  width:fit-content;
   cursor:pointer;
-  animation:pulse 1.5s infinite;
+  animation: pulse 1.5s infinite;
 }
 @keyframes pulse{
   0%{transform:scale(1)}
@@ -74,13 +53,13 @@ body{
 /* Handwriting */
 .handwrite{
   font-family:'Dancing Script',cursive;
-  font-size:2.6em;
+  font-size:2.5em;
   white-space:nowrap;
   overflow:hidden;
   border-right:3px solid #fff;
   width:0;
   margin:30px auto;
-  animation:typing 5s steps(40,end) forwards, blink .8s infinite;
+  animation: typing 5s steps(30,end) forwards, blink .8s infinite;
 }
 @keyframes typing{to{width:100%}}
 @keyframes blink{50%{border-color:transparent}}
@@ -96,14 +75,15 @@ body{
 .photos img{
   width:200px;
   border-radius:20px;
-  box-shadow:0 0 25px #ffccd5;
+  box-shadow:0 0 25px #fff;
   opacity:0;
   transform:scale(0.5);
-  animation:reveal 2s forwards;
+  animation: reveal 2s forwards;
 }
 .photos img:nth-child(1){animation-delay:1s}
 .photos img:nth-child(2){animation-delay:2s}
 .photos img:nth-child(3){animation-delay:3s}
+
 @keyframes reveal{
   to{opacity:1;transform:scale(1)}
 }
@@ -111,9 +91,9 @@ body{
 /* Shayari */
 .shayari{
   font-family:'Dancing Script',cursive;
-  font-size:1.7em;
+  font-size:1.6em;
   margin:30px;
-  animation:float 3s infinite alternate;
+  animation: float 3s infinite alternate;
 }
 @keyframes float{
   from{transform:translateY(0)}
@@ -123,14 +103,14 @@ body{
 /* Proposal */
 .proposal button{
   margin:10px;
-  padding:15px 35px;
+  padding:15px 30px;
   border:none;
   border-radius:30px;
   font-size:1.2em;
   cursor:pointer;
 }
 .yes{background:#fff;color:#ff4d6d}
-.forever{background:#ffccd5;color:#c9184a}
+.forever{background:#ffdde1;color:#ff0066}
 
 /* Popup */
 .popup{
@@ -146,7 +126,7 @@ body{
   color:#ff4d6d;
   padding:30px;
   border-radius:20px;
-  animation:zoom 1s;
+  animation: zoom 1s;
 }
 @keyframes zoom{
   from{transform:scale(0)}
@@ -157,19 +137,11 @@ body{
 
 <body>
 
-<!-- 🎥 CHANGE VIDEO URL HERE -->
-<video autoplay muted loop playsinline>
-  <source src="https://files.catbox.moe/0shlsv.mp4" type="video/mp4">
-</video>
-
-<div class="overlay"></div>
-
-<!-- 🎶 Music -->
 <audio id="music" src="https://files.catbox.moe/z544v2.mp3" loop></audio>
 
 <div class="banner">
   <h1>Happy Hug Day 🤗</h1>
-  <h2>SARGAM JII 💖</h2>
+  <h2>💖 SARGAM JII 💖</h2>
 </div>
 
 <div class="unlock" onclick="unlockLove()">📱 Tap to Unlock Love</div>
@@ -183,8 +155,8 @@ body{
 </div>
 
 <div class="shayari">
-  “Jab tu gale lagti hai na,<br>
-   Toh lagta hai poori duniya meri ho gayi 💞”
+  “Tera saath ho toh har din Hug Day hai,<br>
+   Tu paas ho toh har gham door bhaag jaye 💞”
 </div>
 
 <div class="proposal">
@@ -194,14 +166,15 @@ body{
 
 <div class="popup" id="popup">
   <div>
-    🎁 Tum meri zindagi ho Sargam Jii 💝<br><br>
-    🤗 Hug Forever!
+    🎁 Tum meri duniya ho Sargam Jii 💝<br><br>
+    🤗 Tight Hug Forever!
   </div>
 </div>
 
 <script>
 function unlockLove(){
   document.getElementById("music").play();
+  alert("💖 Love Unlocked for Sargam Jii 💖");
 }
 function showPopup(){
   document.getElementById("popup").style.display="flex";
