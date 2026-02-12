@@ -9,7 +9,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   height:100vh;
-  background:radial-gradient(circle at top,#ff9acb,#ff4f9a,#9b004c);
+  background:radial-gradient(circle at top,#ff9acb,#ff4f9a,#7a003a);
   font-family:'Segoe UI',sans-serif;
   overflow:hidden;
   display:flex;
@@ -18,6 +18,7 @@ body{
   color:white;
 }
 
+/* LOCK SCREEN */
 .lock{
   position:fixed;
   inset:0;
@@ -32,10 +33,9 @@ body{
   font-size:2.2rem;
   animation:pulse 1.2s infinite;
 }
-@keyframes pulse{
-  to{transform:scale(1.1)}
-}
+@keyframes pulse{to{transform:scale(1.1)}}
 
+/* CARD */
 .card{
   display:none;
   background:rgba(255,255,255,.18);
@@ -53,6 +53,57 @@ body{
   text-shadow:0 0 20px #fff;
 }
 
+/* PHOTO SLIDESHOW */
+.photo-wrap{
+  position:relative;
+  width:190px;
+  height:190px;
+  margin:18px auto;
+  display:none;
+}
+
+.photo-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.8);
+  animation:rotateGlow 6s linear infinite;
+}
+
+@keyframes rotateGlow{
+  to{transform:rotate(360deg)}
+}
+
+.photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  opacity:0;
+  animation:heartbeat 2s infinite, floaty 4s ease-in-out infinite;
+  box-shadow:0 0 35px #ffd1e8;
+  transition:opacity 1.2s ease;
+}
+
+.photo.active{
+  opacity:1;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  25%{transform:scale(1.05)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.08)}
+}
+@keyframes floaty{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+
+/* Handwriting */
 .write{
   margin-top:15px;
   font-size:2.4rem;
@@ -66,23 +117,7 @@ body{
 @keyframes typing{to{width:100%}}
 @keyframes blink{50%{border-color:transparent}}
 
-.photo{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  object-fit:cover;
-  margin:15px auto;
-  display:none;
-  border:4px solid #fff;
-  box-shadow:0 0 30px #ffdeec;
-  animation:zoomIn 1.5s ease;
-}
-@keyframes zoomIn{
-  from{transform:scale(.3);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-
-/* floating hearts */
+/* Floating hearts */
 .float{
   position:absolute;
   bottom:-60px;
@@ -93,7 +128,7 @@ body{
   to{transform:translateY(-120vh);opacity:0}
 }
 
-/* fireworks text */
+/* Fireworks name */
 .fire{
   position:fixed;
   top:40%;
@@ -114,7 +149,7 @@ body{
 
 <body>
 
-<!-- MUSIC -->
+<!-- 🎵 MUSIC -->
 <audio id="music" loop>
   <source src="https://files.catbox.moe/z544v2.mp3" type="audio/mpeg">
 </audio>
@@ -129,28 +164,37 @@ body{
   <h1>Happy Hug Day 🤗</h1>
   <div class="name">💖 SARGAM JII 💖</div>
 
-  <!-- PHOTO -->
-  <img id="photo" class="photo"
-  src="https://files.catbox.moe/vkl6oa.jpg"
-  alt="My Love">
+  <!-- 💓 MULTI PHOTO -->
+  <div class="photo-wrap" id="photoWrap">
+    <img class="photo active" src="https://files.catbox.moe/vkl6oa.jpg">
+    <img class="photo" src="https://files.catbox.moe/14yoxb.jpg">
+  </div>
 
   <div class="write">I Love You 💞</div>
 
-  <p style="margin-top:15px;font-size:1.1rem">
-    Tumhari smile meri duniya hai 🥹❤️
+  <p style="margin-top:14px;font-size:1.1rem">
+    Tumhari har photo meri favorite hai 🥹❤️
   </p>
 </div>
 
 <script>
 const icons=["💖","🌹","❤️","💘","🫂"];
+let current=0;
 
 function unlockLove(){
   document.querySelector(".lock").style.display="none";
   document.getElementById("card").style.display="block";
   document.getElementById("music").play();
+  document.getElementById("photoWrap").style.display="block";
+  setTimeout(nameBlast,1500);
+  setInterval(changePhoto,4000);
+}
 
-  setTimeout(()=>document.getElementById("photo").style.display="block",1200);
-  setTimeout(nameBlast,1800);
+function changePhoto(){
+  const photos=document.querySelectorAll(".photo");
+  photos[current].classList.remove("active");
+  current=(current+1)%photos.length;
+  photos[current].classList.add("active");
 }
 
 function floatItem(){
