@@ -15,102 +15,118 @@ body{
   font-family:'Poppins',sans-serif;
   color:#fff;
   text-align:center;
-  overflow-x:hidden;
+  overflow:hidden;
+}
+
+/* Glowing Rain */
+.rain span{
+  position:fixed;
+  top:-10%;
+  font-size:24px;
+  animation: fall linear infinite;
+  opacity:.8;
+}
+@keyframes fall{
+  to{transform:translateY(120vh);opacity:0}
 }
 
 /* Banner */
 .banner{
-  padding:40px 20px;
+  padding:30px 15px;
   animation: glow 2s infinite alternate;
 }
 .banner h1{
   font-family:'Pacifico',cursive;
   font-size:3em;
-  text-shadow:0 0 20px #fff;
+  text-shadow:0 0 25px #fff;
+}
+.banner h2{
+  font-family:'Dancing Script',cursive;
+  font-size:2em;
 }
 @keyframes glow{
-  from{filter:drop-shadow(0 0 5px #fff)}
-  to{filter:drop-shadow(0 0 20px #ffdde1)}
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 30px #ffd1dc}
 }
 
 /* Unlock */
 .unlock{
-  margin:20px;
-  padding:15px 30px;
+  margin:20px auto;
+  width:max-content;
+  padding:15px 35px;
   background:#fff;
   color:#ff4d6d;
   border-radius:50px;
   font-weight:bold;
   cursor:pointer;
-  animation: pulse 1.5s infinite;
+  animation:pulse 1.5s infinite;
 }
 @keyframes pulse{
-  0%{transform:scale(1)}
   50%{transform:scale(1.1)}
-  100%{transform:scale(1)}
 }
 
 /* Handwriting */
 .handwrite{
   font-family:'Dancing Script',cursive;
-  font-size:2.5em;
+  font-size:2.6em;
   white-space:nowrap;
   overflow:hidden;
   border-right:3px solid #fff;
   width:0;
-  margin:30px auto;
-  animation: typing 5s steps(30,end) forwards, blink .8s infinite;
+  margin:20px auto;
+  animation:typing 4s steps(30,end) forwards, blink .8s infinite;
 }
 @keyframes typing{to{width:100%}}
 @keyframes blink{50%{border-color:transparent}}
 
-/* Photos */
-.photos{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-  margin:30px;
+/* Photo Box */
+.photo-box{
+  width:260px;
+  height:260px;
+  margin:30px auto;
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:0 0 30px #fff;
+  animation:boxGlow 2s infinite alternate;
 }
-.photos img{
-  width:200px;
-  border-radius:20px;
-  box-shadow:0 0 25px #fff;
-  opacity:0;
-  transform:scale(0.5);
-  animation: reveal 2s forwards;
+@keyframes boxGlow{
+  to{box-shadow:0 0 45px #ffd1dc}
 }
-.photos img:nth-child(1){animation-delay:1s}
-.photos img:nth-child(2){animation-delay:2s}
-.photos img:nth-child(3){animation-delay:3s}
-
-@keyframes reveal{
-  to{opacity:1;transform:scale(1)}
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  animation: slide 9s infinite;
+}
+@keyframes slide{
+  0%{opacity:1}
+  30%{opacity:1}
+  33%{opacity:0}
+  100%{opacity:0}
 }
 
 /* Shayari */
 .shayari{
   font-family:'Dancing Script',cursive;
-  font-size:1.6em;
-  margin:30px;
-  animation: float 3s infinite alternate;
+  font-size:1.7em;
+  margin:25px;
+  animation:float 3s infinite alternate;
 }
 @keyframes float{
-  from{transform:translateY(0)}
-  to{transform:translateY(-10px)}
+  to{transform:translateY(-12px)}
 }
 
 /* Proposal */
 .proposal button{
   margin:10px;
-  padding:15px 30px;
+  padding:15px 35px;
   border:none;
   border-radius:30px;
   font-size:1.2em;
   cursor:pointer;
 }
 .yes{background:#fff;color:#ff4d6d}
-.forever{background:#ffdde1;color:#ff0066}
+.forever{background:#ffd1dc;color:#ff0066}
 
 /* Popup */
 .popup{
@@ -126,7 +142,7 @@ body{
   color:#ff4d6d;
   padding:30px;
   border-radius:20px;
-  animation: zoom 1s;
+  animation:zoom 1s;
 }
 @keyframes zoom{
   from{transform:scale(0)}
@@ -137,26 +153,27 @@ body{
 
 <body>
 
+<!-- Rain -->
+<div class="rain" id="rain"></div>
+
 <audio id="music" src="https://files.catbox.moe/z544v2.mp3" loop></audio>
 
 <div class="banner">
   <h1>Happy Hug Day 🤗</h1>
-  <h2>💖 SARGAM JII 💖</h2>
+  <h2>💖 Sargam Jii 💖</h2>
 </div>
 
 <div class="unlock" onclick="unlockLove()">📱 Tap to Unlock Love</div>
 
 <div class="handwrite">I Love You Sargam Jii 💕</div>
 
-<div class="photos">
-  <img src="https://files.catbox.moe/vkl6oa.jpg">
-  <img src="https://files.catbox.moe/14yoxb.jpg">
-  <img src="https://files.catbox.moe/7rokfd.jpg">
+<div class="photo-box">
+  <img id="slider" src="https://files.catbox.moe/vkl6oa.jpg">
 </div>
 
 <div class="shayari">
-  “Tera saath ho toh har din Hug Day hai,<br>
-   Tu paas ho toh har gham door bhaag jaye 💞”
+“Tera saath ho toh har din Hug Day hai,<br>
+Tu paas ho toh har dard bhi muskura jaye 💞”
 </div>
 
 <div class="proposal">
@@ -172,12 +189,37 @@ body{
 </div>
 
 <script>
+/* Music unlock fix */
 function unlockLove(){
-  document.getElementById("music").play();
-  alert("💖 Love Unlocked for Sargam Jii 💖");
+  const music=document.getElementById("music");
+  music.play().catch(()=>{});
 }
+
+/* Popup */
 function showPopup(){
   document.getElementById("popup").style.display="flex";
+}
+
+/* Photo Slider */
+const photos=[
+"https://files.catbox.moe/vkl6oa.jpg",
+"https://files.catbox.moe/14yoxb.jpg",
+"https://files.catbox.moe/7rokfd.jpg"
+];
+let i=0;
+setInterval(()=>{
+  i=(i+1)%photos.length;
+  document.getElementById("slider").src=photos[i];
+},3000);
+
+/* Rain effect */
+const rain=document.getElementById("rain");
+for(let i=0;i<30;i++){
+  let s=document.createElement("span");
+  s.innerHTML=Math.random()>0.5?"💖":"🌸";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=3+Math.random()*5+"s";
+  rain.appendChild(s);
 }
 </script>
 
